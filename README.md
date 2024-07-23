@@ -1,8 +1,10 @@
-# - `XXXX`项目
+# - `图书借阅管理系统`项目
 
 ## 项目简介
 
-这里是项目简介
+一个图书解约管理系统，作为初学JavaSpring的练手项目。其中包括了以下基础功能：
+用户：登录与注册、个人中心、图书借阅、用户借阅信息
+管理员：图书分类管理、图书借阅管理、图书存储管理、用户管理
 
 ## 目录结构说明
 
@@ -16,11 +18,9 @@
 | 技术             | 说明                 | 版本  | 备注                                                                           |
 | ---------------- | -------------------- | ----- | ------------------------------------------------------------------------------ |
 | Spring           | 容器                 | 5.2.6 | https://spring.io/                                                             |
-| SpringWebMVC     | mvc 框架             | 5.2.6 | https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html |
-| Mybatis          | ORM 框架             | 3.??? | http://www.mybatis.org/mybatis-3/zh/index.html                                 |
-| MyBatisGenerator | 数据层代码生成       | ???   | http://www.mybatis.org/generator/index.html                                    |
-| PageHelper       | MyBatis 物理分页插件 | ???   | http://git.oschina.net/free/Mybatis_PageHelper                                 |
-| Druid            | 数据库连接池         | ???   | https://github.com/alibaba/druid                                               |
+| Mybatis         | ORM 框架             | 3.??? | http://www.mybatis.org/mybatis-3/zh/index.html                                 | 
+| MyBatis Plus     | ORM 框架增强工具     | ???   | https://baomidou.com/en/mybatis-plus/                                          |
+| SaToken     | Java权限认证框架    | 1.38.0   | https://sa-token.cc/index.html                                          |
 | Lombok           | 简化对象封装工具     | ???   | https://github.com/rzwitserloot/lombok                                         |
 
 ### 前端技术
@@ -29,7 +29,6 @@
 | ---------- | ---------------- | ---- | ------------------------------ |
 | Vue        | 前端框架         | ???  | https://vuejs.org/             |
 | Vue-router | 路由框架         | ???  | https://router.vuejs.org/      |
-| Vuex       | 全局状态管理框架 | ???  | https://vuex.vuejs.org/        |
 | Axios      | 前端 HTTP 框架   | ???  | https://github.com/axios/axios |
 | Bootstrap  | 前端 UI 框架     | 4    | https://bootstrap-vue.org/     |
 | Element    | 前端 UI 框架     | ???  | https://element.eleme.io       |
@@ -42,26 +41,20 @@
 | ------------- | ---------------- | ---- | --------------------------------------- |
 | IDEA          | 开发 IDE         | ???  | https://www.jetbrains.com/idea/download |
 | Navicat       | 数据库连接工具   | ???  | http://www.formysql.com/xiazai.html     |
-| PowerDesigner | 数据库设计工具   | ???  | http://powerdesigner.de/                |
-| Axure         | 原型设计工具     | ???  | https://www.axure.com/                  |
-| MindMaster    | 思维导图设计工具 | ???  | http://www.edrawsoft.cn/mindmaster      |
-| Visio         | 流程图绘制工具   | ???  |                                         |
-| Postman       | API 接口调试工具 | ???  | https://www.postman.com/                |
+| 幕布    | 思维导图设计工具 | ???  | http://www.edrawsoft.cn/mindmaster      |
+| ProcessOn         | 流程图绘制工具   | ???  |                                         |
 
 ### 开发环境
 
 | 工具    | 版本    | 备注                      |
 | ------- | ------- | ------------------------- |
-| Windows | 10      | 操作系统                  |
+| Windows | 11      | 操作系统                  |
 | JDK     | 1.8     | https://www.injdk.cn/     |
 | MySQL   | 5.7     | https://www.mysql.com/cn/ |
 | Tomcat  | 8.5     |                           |
-| NodeJS  | 12.16.3 | https://nodejs.org/zh-cn/ |
+| NodeJS  | 14.17.1 | https://nodejs.org/zh-cn/ |
 
 ### 安装教程
 
 后续补充
 
-## 开发进度
-
-![项目开发进度图](documents/preview-pic/dev-process-status.png)

@@ -179,6 +179,7 @@ LOCK TABLES `t_role_permission` WRITE;
 /*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
 INSERT INTO `t_role_permission` VALUES (1,1),(2,1),(1,2),(2,2),(1,3),(2,3),(1,4),(1,5),(2,5),(1,6),(3,7),(3,8);
 /*!40000 ALTER TABLE `t_role_permission` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -251,4 +252,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-24 15:13:42
+ Dump completed on 2024-07-24 15:13:42
+

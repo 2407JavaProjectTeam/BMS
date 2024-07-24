@@ -9,8 +9,8 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.3</version>
     </parent>
-    <groupId>com.hqyj.gyq</groupId>
-    <artifactId>person-manager</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>bms</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

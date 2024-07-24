@@ -155,28 +155,31 @@ INSERT INTO `t_role` VALUES (1,'admin'),(2,'librarian'),(3,'member');
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_role_premission`
+-- Table structure for table `t_role_permission`
 --
 
-DROP TABLE IF EXISTS `t_role_premission`;
+DROP TABLE IF EXISTS `t_role_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_role_premission` (
-  `role_premission_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL,
-  `premission_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`role_premission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE `t_role_permission` (
+  `role_id` int(11) NOT NULL COMMENT '角色ID',
+  `permission_id` int(11) NOT NULL COMMENT '权限ID',
+  PRIMARY KEY (`role_id`,`permission_id`) USING BTREE,
+  KEY `role_permission_ibfk_2` (`permission_id`) USING BTREE,
+  CONSTRAINT `t_role_permission_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `t_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_role_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `t_permission` (`permission_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_role_premission`
+-- Dumping data for table `t_role_permission`
 --
 
-LOCK TABLES `t_role_premission` WRITE;
-/*!40000 ALTER TABLE `t_role_premission` DISABLE KEYS */;
-INSERT INTO `t_role_premission` VALUES (20,1,1),(21,1,2),(22,1,3),(23,1,4),(24,1,5),(25,1,6),(26,1,7),(27,1,8),(28,2,1),(29,2,3),(30,2,4),(31,2,5),(32,3,1),(33,3,7),(34,3,8);
-/*!40000 ALTER TABLE `t_role_premission` ENABLE KEYS */;
+LOCK TABLES `t_role_permission` WRITE;
+/*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
+INSERT INTO `t_role_permission` VALUES (1,1),(2,1),(1,2),(2,2),(1,3),(2,3),(1,4),(1,5),(2,5),(1,6),(3,7),(3,8);
+/*!40000 ALTER TABLE `t_role_permission` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -249,4 +252,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-24 16:12:37
+ Dump completed on 2024-07-24 15:13:42
+

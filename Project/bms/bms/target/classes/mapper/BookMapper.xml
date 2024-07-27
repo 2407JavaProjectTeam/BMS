@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.entity.Book">
+            <id property="bookId" column="book_id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="bookImg" column="book_img" jdbcType="VARCHAR"/>
+            <result property="author" column="author" jdbcType="VARCHAR"/>
+            <result property="publicationDate" column="publication_date" jdbcType="DATE"/>
+            <result property="isbn" column="isbn" jdbcType="VARCHAR"/>
+            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+            <result property="bookStatus" column="book_status" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        book_id,title,book_img,
+        author,publication_date,isbn,
+        category_id,book_status
+    </sql>
+
+    <select id="selectByTitle" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_book b
+        WHERE
+            b.title = #{title}
+    </select>
+
+    <select id="selectByAuthor" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_book b
+        WHERE
+            b.author = #{author}
+    </select>
+
+    <select id="selectBooksByTitleCount" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        t_book b
+        <where>
+            <if test="title!=null and title!=''">
+                and title like CONCAT("%",#{title},"%")
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBooksByAuthorCount" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        t_book b
+        <where>
+            <if test="author!=null and author!=''">
+                and author like CONCAT("%",#{author},"%")
+            </if>
+        </where>
+    </select>
+
+</mapper>

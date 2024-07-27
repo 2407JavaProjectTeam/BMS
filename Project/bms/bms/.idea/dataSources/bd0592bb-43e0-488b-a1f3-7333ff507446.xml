@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="library_management_system@localhost">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
+    <root id="1"/>
+    <schema id="2" parent="1" name="humanresource"/>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="library_management_system">
+      <Current>1</Current>
+    </schema>
+    <schema id="5" parent="1" name="mybatis_plus"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="study"/>
+    <schema id="9" parent="1" name="sys"/>
+    <table id="10" parent="4" name="t_book">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="11" parent="4" name="t_borrow_record">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="12" parent="4" name="t_category">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="13" parent="4" name="t_permission">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="14" parent="4" name="t_role">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="15" parent="4" name="t_role_permission">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8_bin</CollationName>
+    </table>
+    <table id="16" parent="4" name="t_user">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="17" parent="4" name="t_user_role">
+      <Engine>InnoDB</Engine>
+      <Options>row_format
+DYNAMIC</Options>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <column id="18" parent="10" name="book_id">
+      <AutoIncrement>7</AutoIncrement>
+      <Comment>图书编号</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="19" parent="10" name="title">
+      <Comment>图书标题</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="20" parent="10" name="book_img">
+      <Comment>图书封面</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="21" parent="10" name="author">
+      <Comment>作者</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="22" parent="10" name="publication_date">
+      <Comment>出版日期</Comment>
+      <DasType>date|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="23" parent="10" name="isbn">
+      <Comment>ISBN号</Comment>
+      <DasType>varchar(20)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="24" parent="10" name="category_id">
+      <Comment>分类ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="25" parent="10" name="book_num">
+      <Comment>图书现有数量</Comment>
+      <DasType>int(11)|0s</DasType>
+      <DefaultExpression>1</DefaultExpression>
+      <Position>8</Position>
+    </column>
+    <column id="26" parent="10" name="book_borrow_num">
+      <Comment>图书已借阅数量</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <foreign-key id="27" parent="10" name="t_book_ibfk_1">
+      <ColNames>category_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>category_id</RefColNames>
+      <RefTableName>t_category</RefTableName>
+    </foreign-key>
+    <index id="28" parent="10" name="PRIMARY">
+      <ColNames>book_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="29" parent="10" name="books_ibfk_1">
+      <ColNames>category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="30" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="31" parent="11" name="record_id">
+      <AutoIncrement>4</AutoIncrement>
+      <Comment>借阅记录编号</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="32" parent="11" name="user_id">
+      <Comment>用户编号</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="33" parent="11" name="book_id">
+      <Comment>图书编号</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="34" parent="11" name="borrow_date">
+      <Comment>借书日期</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>4</Position>
+    </column>
+    <column id="35" parent="11" name="return_date">
+      <Comment>还书日期</Comment>
+      <DasType>timestamp|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="36" parent="11" name="status">
+      <Comment>状态（1：未归还 2：已归还）</Comment>
+      <DasType>tinyint(2)|0s</DasType>
+      <DefaultExpression>1</DefaultExpression>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="37" parent="11" name="t_borrow_record_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>t_user</RefTableName>
+    </foreign-key>
+    <foreign-key id="38" parent="11" name="t_borrow_record_ibfk_2">
+      <ColNames>book_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>book_id</RefColNames>
+      <RefTableName>t_book</RefTableName>
+    </foreign-key>
+    <index id="39" parent="11" name="PRIMARY">
+      <ColNames>record_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="40" parent="11" name="borrow_records_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="41" parent="11" name="borrow_records_ibfk_2">
+      <ColNames>book_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="42" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="43" parent="12" name="category_id">
+      <AutoIncrement>6</AutoIncrement>
+      <Comment>分类ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="44" parent="12" name="category_name">
+      <Comment>分类名称</Comment>
+      <DasType>varchar(100)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <index id="45" parent="12" name="PRIMARY">
+      <ColNames>category_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="46" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="47" parent="13" name="permission_id">
+      <AutoIncrement>11</AutoIncrement>
+      <Comment>权限ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="48" parent="13" name="permission_name">
+      <Comment>权限名称</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="49" parent="13" name="permission_icon">
+      <Comment>权限icon样式</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="50" parent="13" name="permission_url">
+      <Comment>权限url地址</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="51" parent="13" name="pid">
+      <Comment>权限菜单分类</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="52" parent="13" name="PRIMARY">
+      <ColNames>permission_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="53" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="54" parent="14" name="role_id">
+      <AutoIncrement>4</AutoIncrement>
+      <Comment>角色ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="55" parent="14" name="role_name">
+      <Comment>角色名称</Comment>
+      <DasType>varchar(20)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <index id="56" parent="14" name="PRIMARY">
+      <ColNames>role_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="57" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="58" parent="15" name="role_permission_id">
+      <AutoIncrement>17</AutoIncrement>
+      <Comment>角色权限对应表ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="59" parent="15" name="role_id">
+      <Comment>角色ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="60" parent="15" name="permission_id">
+      <Comment>权限ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="61" parent="15" name="t_role_permission_ibfk_1">
+      <ColNames>role_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>role_id</RefColNames>
+      <RefTableName>t_role</RefTableName>
+    </foreign-key>
+    <foreign-key id="62" parent="15" name="t_role_permission_ibfk_2">
+      <ColNames>permission_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>permission_id</RefColNames>
+      <RefTableName>t_permission</RefTableName>
+    </foreign-key>
+    <index id="63" parent="15" name="PRIMARY">
+      <ColNames>role_permission_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="64" parent="15" name="role_id">
+      <ColNames>role_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="65" parent="15" name="permission_id">
+      <ColNames>permission_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="66" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="67" parent="16" name="user_id">
+      <AutoIncrement>19</AutoIncrement>
+      <Comment>用户ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="68" parent="16" name="user_name">
+      <Comment>账号名</Comment>
+      <DasType>varchar(20)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="69" parent="16" name="user_password">
+      <Comment>密码</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="70" parent="16" name="user_img">
+      <Comment>头像</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="71" parent="16" name="user_rname">
+      <Comment>姓名</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="72" parent="16" name="user_gender">
+      <Comment>性别</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="73" parent="16" name="user_tel">
+      <Comment>联系电话</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="74" parent="16" name="user_email">
+      <Comment>电子邮箱</Comment>
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="75" parent="16" name="registration_date">
+      <Comment>账户创建时间</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>9</Position>
+    </column>
+    <column id="76" parent="16" name="user_status">
+      <Comment>状态（1：未冻结 2：冻结）</Comment>
+      <DasType>tinyint(2)|0s</DasType>
+      <DefaultExpression>1</DefaultExpression>
+      <Position>10</Position>
+    </column>
+    <index id="77" parent="16" name="PRIMARY">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="78" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="79" parent="17" name="user_role_id">
+      <AutoIncrement>22</AutoIncrement>
+      <Comment>用户角色对应表 ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="80" parent="17" name="user_id">
+      <Comment>用户ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="81" parent="17" name="role_id">
+      <Comment>角色ID</Comment>
+      <DasType>int(11)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="82" parent="17" name="t_user_role_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>t_user</RefTableName>
+    </foreign-key>
+    <foreign-key id="83" parent="17" name="t_user_role_ibfk_2">
+      <ColNames>role_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>role_id</RefColNames>
+      <RefTableName>t_role</RefTableName>
+    </foreign-key>
+    <index id="84" parent="17" name="PRIMARY">
+      <ColNames>user_role_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="85" parent="17" name="unique_user_role">
+      <ColNames>user_id
+role_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="86" parent="17" name="role_id_idx">
+      <ColNames>role_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="87" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="88" parent="17" name="unique_user_role">
+      <UnderlyingIndexName>unique_user_role</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>

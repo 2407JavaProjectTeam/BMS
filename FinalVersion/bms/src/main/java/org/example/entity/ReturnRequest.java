@@ -12,43 +12,32 @@ import lombok.Data;
 
 /**
  * 
- * @TableName t_borrow_record
+ * @TableName t_return_request
  */
-@TableName(value ="t_borrow_record")
+@TableName(value ="t_return_request")
 @Data
-public class BorrowRecord implements Serializable {
+public class ReturnRequest implements Serializable {
     /**
-     * 借阅记录编号
+     * 
      */
-    @TableId(type = IdType.AUTO)
-    private Integer recordId;
+    @TableId
+    private Integer returnRequestId;
 
     /**
-     * 用户编号
+     * 
      */
     private Integer userId;
 
     /**
-     * 图书编号
+     * 
      */
     private Integer bookId;
 
     /**
-     * 借书日期
+     * 
      */
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date borrowDate;
-
-    /**
-     * 还书日期
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date returnDate;
-
-    /**
-     * 状态（1：未归还 2：已归还）
-     */
-    private int status;
+    private Date requestDate;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

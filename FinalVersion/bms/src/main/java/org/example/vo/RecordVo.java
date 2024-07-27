@@ -1,26 +1,19 @@
-package org.example.entity;
+package org.example.vo;
+
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-/**
- * 
- * @TableName t_borrow_record
- */
-@TableName(value ="t_borrow_record")
+import java.util.Date;
+
 @Data
-public class BorrowRecord implements Serializable {
+public class RecordVo {
     /**
      * 借阅记录编号
      */
-    @TableId(type = IdType.AUTO)
     private Integer recordId;
 
     /**
@@ -48,8 +41,21 @@ public class BorrowRecord implements Serializable {
     /**
      * 状态（1：未归还 2：已归还）
      */
-    private int status;
+    private Byte status;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+    private String title;
+
+    private String author;
+
+    private String cName;
+
+    private String name;
+
+    private  String rb;
+
+    private int r_id;
+
+    private int bookNum;
+
+    private int bookBorrowNum;
 }

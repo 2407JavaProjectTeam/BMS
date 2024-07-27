@@ -1,27 +1,18 @@
-package org.example.entity;
+package org.example.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-/**
- * 
- * @TableName t_book
- */
-@TableName(value ="t_book")
+import java.util.Date;
+
 @Data
-public class Book implements Serializable {
+public class BookCategoryVo {
     /**
      * 图书编号
      */
-    @TableId(type = IdType.AUTO)
     private Integer bookId;
 
     /**
@@ -42,8 +33,6 @@ public class Book implements Serializable {
     /**
      * 出版日期
      */
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date publicationDate;
 
     /**
      * ISBN号
@@ -54,20 +43,21 @@ public class Book implements Serializable {
      * 分类ID
      */
     private Integer categoryId;
+    /**
+     * 出版日期
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date publicationDate;
 
     /**
-     * 状态（1：未借阅 2：已借阅）
+     * 图书现有数量
      */
-    private Byte bookStatus;
-
-
     private Integer bookNum;
 
+    /**
+     * 图书已借阅数量
+     */
     private Integer bookBorrowNum;
 
-    @TableField(exist = false)
-    private List<Category> categoryList;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+    private String categoryName;
 }

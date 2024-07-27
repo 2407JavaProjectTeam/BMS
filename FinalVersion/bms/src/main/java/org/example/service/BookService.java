@@ -9,5 +9,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *
  */
 public interface BookService extends IService<Book> {
-    SaResult queryBookInfos(BookQueryDto bookQueryDto);
+   // SaResult addBook(BookAddDto bookAddDto);
+
+   // SaResult removeBook(Integer bookId );
+
+   // SaResult removeBooks(Integer[] bookIds);
+
+    SaResult queryBooks(BookQueryDto bookQueryDto);
+
+
+    //SaResult updateBook(BookUpdateDto bookUpdateDto);
 }

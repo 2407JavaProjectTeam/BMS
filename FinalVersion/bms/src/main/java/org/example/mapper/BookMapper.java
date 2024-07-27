@@ -11,7 +11,7 @@ import java.util.List;
  * @Entity org.example.entity.Book
  */
 public interface BookMapper extends BaseMapper<Book> {
-    List<Book> selectBooks(BookQueryDto bookQueryDto);
+    List<Object> selectBooks(BookQueryDto bookQueryDto);
 
     Integer selectBooksCount(BookQueryDto bookQueryDto);
 }

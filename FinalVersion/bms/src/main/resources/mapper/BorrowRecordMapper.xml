@@ -13,8 +13,85 @@
             <result property="status" column="status" jdbcType="TINYINT"/>
     </resultMap>
 
+    <resultMap id="RecordResultMap" type="org.example.vo.RecordVo">
+        <id property="recordId" column="record_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="bookId" column="book_id" jdbcType="INTEGER"/>
+        <result property="borrowDate" column="borrow_date" jdbcType="TIMESTAMP"/>
+        <result property="returnDate" column="return_date" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="title" column="title"></result>
+        <result property="author" column="author"></result>
+        <result property="name"  column="user_name"></result>
+        <result property="cName" column="category_name"></result>
+        <result property="rb" column="status" ></result>
+        <result property="r_id" column="record_id"></result>
+        <result property="bookBorrowNum" column="book_borrow_num"></result>
+        <result property="bookNum" column="book_num"></result>
+
+    </resultMap>
+
+
+
     <sql id="Base_Column_List">
         record_id,user_id,book_id,
         borrow_date,return_date,status
     </sql>
+
+    <select id="selectRecords" resultMap="RecordResultMap">
+        SELECT
+        *
+        FROM
+        t_user u
+        LEFT JOIN t_borrow_record r ON u.user_id = r.user_id
+        LEFT JOIN t_book b ON r.book_id = b.book_id
+        LEFT JOIN t_category c ON b.category_id = c.category_id
+        <where>
+            <if test="name!=null and name!=''">
+                and user_name = #{name}
+            </if>
+            <if test="rb==1">
+                and status = 2
+            </if>
+            <if test="title!=null and title!=''">
+                and title like CONCAT("%",#{title},"%")
+            </if>
+            <if test="author!=null and author!=''">
+                and author like CONCAT("%",#{author},"%")
+            </if>
+            <if test="cName!=null and cName!=''">
+                and category_name like CONCAT("%",#{cName},"%")
+            </if>
+        </where>
+
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="selectRecordsCount" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        t_user u
+        LEFT JOIN t_borrow_record r ON u.user_id = r.user_id
+        LEFT JOIN t_book b ON r.book_id = b.book_id
+        LEFT JOIN t_category c ON b.category_id = c.category_id
+        <where>
+            <if test="rb==1">
+                and status = 2
+            </if>
+            <if test="name!=null and name!=''">
+                and user_name = #{name}
+            </if>
+            <if test="title!=null and title!=''">
+                and title like CONCAT("%",#{title},"%")
+            </if>
+            <if test="author!=null and author!=''">
+                and author like CONCAT("%",#{author},"%")
+            </if>
+            <if test="cName!=null and cName!=''">
+                and category_name like CONCAT("%",#{cName},"%")
+            </if>
+        </where>
+
+    </select>
 </mapper>

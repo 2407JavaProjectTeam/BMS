@@ -74,11 +74,12 @@
 </template>
 
 <script>
+  import jpg from '@/assets/home1.jpg'
   export default {
     name: "Index",
     data(){
       return{
-        url:undefined,
+        url: jpg,
         username:"",
         nodes:[]
       }
@@ -127,7 +128,7 @@
       this.username = sessionStorage.getItem("username")
       this.queryPermissions()
       this.url = sessionStorage.getItem("imgUrl")
-      if(this.url.substring(0,7)==="http://") {
+      if(this.url.substring(0,7) === "http://") {
         this.url = this.url
       } else {
         this.url = "http://localhost:8088"+ this.url
@@ -143,7 +144,7 @@
     text-align: center;
     line-height: 200px;
     /*height: 752px;*/
-    height: 100vh;
+    height: 140vh;
   }
   .el-header {
     background-color: #EDEDED;

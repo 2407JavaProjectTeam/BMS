@@ -11,7 +11,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
-                .excludePathPatterns("/api/login","/images/*")
+                .excludePathPatterns("/api/login","/images/*","/api/register")
                 .addPathPatterns("/**");
     }
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -61,6 +62,7 @@ public class User implements Serializable {
     /**
      * 账户创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date registrationDate;
 
     /**
@@ -68,8 +70,13 @@ public class User implements Serializable {
      */
     private Byte userStatus;
 
+    private Integer maxNum;
+
+    private Integer borrowNum;
+
     @TableField(exist = false)
     private List<Role> roleList;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

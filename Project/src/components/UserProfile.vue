@@ -4,7 +4,7 @@
         <el-col :span="6" :xs="24">
           <el-card class="box-card">
             <div class="user-info text item">
-              {{userInfo.userInfo}}
+              {{userInfo}}
             </div>
             <el-divider class="divider-height"></el-divider>
             <div class="text item user-img">
@@ -30,13 +30,13 @@
             <div class="user-info text item">
               <el-row :gutter="20">
                 <el-col :span="8" :xs="24">
-                  <span><i class="el-icon-user-solid"></i>用户名称</span>
+                  <span><i class="el-icon-user-solid"></i>账号名称</span>
                 </el-col>
                 <el-col :span="8" :xs="24">
                   <span>&nbsp;</span>
                 </el-col>
                 <el-col :span="8" :xs="24" class="col-right">
-                  <span>{{userInfo.userName}}</span>
+                  <span>{{tableData[0].userName}}</span>
                 </el-col>
               </el-row>
             </div>
@@ -44,13 +44,13 @@
             <div class="user-info text item">
               <el-row :gutter="20">
                 <el-col :span="8" :xs="24">
-                  <span><i class="iconfont icon-shouji"></i>手机号码</span>
+                  <span><i class="el-icon-user-solid"></i>用户姓名</span>
                 </el-col>
                 <el-col :span="8" :xs="24">
                   <span>&nbsp;</span>
                 </el-col>
                 <el-col :span="8" :xs="24" class="col-right">
-                  <span>{{userInfo.userTel}}</span>
+                  <span>{{tableData[0].userRname}}</span>
                 </el-col>
               </el-row>
             </div>
@@ -58,27 +58,13 @@
             <div class="user-info text item">
               <el-row :gutter="20">
                 <el-col :span="8" :xs="24">
-                  <span><i class="iconfont icon-youxiang"></i>用户邮箱</span>
+                  <span><i class="el-icon-user-solid"></i>用户性别</span>
                 </el-col>
-                <el-col :span="7" :xs="24">
-                  <span>&nbsp;</span>
-                </el-col>
-                <el-col :span="9" :xs="24" class="col-right">
-                  <span>{{userInfo.userEmail}}</span>
-                </el-col>
-              </el-row>
-            </div>
-            <el-divider></el-divider>
-            <div class="user-info text item">
-              <el-row :gutter="20">
                 <el-col :span="8" :xs="24">
-                  <span><i class="iconfont icon-bumenguanli"></i>所属部门</span>
-                </el-col>
-                <el-col :span="7" :xs="24">
                   <span>&nbsp;</span>
                 </el-col>
-                <el-col :span="9" :xs="24" class="col-right">
-                  <span>{{userInfo.userDept}}</span>
+                <el-col :span="8" :xs="24" class="col-right">
+                  <span>{{tableData[0].userGender}}</span>
                 </el-col>
               </el-row>
             </div>
@@ -92,7 +78,7 @@
                   <span>&nbsp;</span>
                 </el-col>
                 <el-col :span="9" :xs="24" class="col-right">
-                  <span>{{userInfo.userRole}}</span>
+                  <span>{{tableData[0].roleName}}</span>
                 </el-col>
               </el-row>
             </div>
@@ -100,13 +86,41 @@
             <div class="user-info text item">
               <el-row :gutter="20">
                 <el-col :span="8" :xs="24">
-                  <span><i class="iconfont icon-riqi"></i>创建日期</span>
+                  <span><i class="iconfont icon-shouji"></i>联系电话</span>
+                </el-col>
+                <el-col :span="8" :xs="24">
+                  <span>&nbsp;</span>
+                </el-col>
+                <el-col :span="8" :xs="24" class="col-right">
+                  <span>{{tableData[0].userTel}}</span>
+                </el-col>
+              </el-row>
+            </div>
+            <el-divider></el-divider>
+            <div class="user-info text item">
+              <el-row :gutter="20">
+                <el-col :span="8" :xs="24">
+                  <span><i class="iconfont icon-youxiang"></i>电子邮箱</span>
                 </el-col>
                 <el-col :span="7" :xs="24">
                   <span>&nbsp;</span>
                 </el-col>
                 <el-col :span="9" :xs="24" class="col-right">
-                  <span>{{userInfo.userCreatedate}}</span>
+                  <span>{{tableData[0].userEmail}}</span>
+                </el-col>
+              </el-row>
+            </div>
+            <el-divider></el-divider>
+            <div class="user-info text item">
+              <el-row :gutter="20">
+                <el-col :span="8" :xs="24">
+                  <span><i class="iconfont icon-riqi"></i>注册日期</span>
+                </el-col>
+                <el-col :span="7" :xs="24">
+                  <span>&nbsp;</span>
+                </el-col>
+                <el-col :span="9" :xs="24" class="col-right">
+                  <span>{{tableData[0].registrationDate}}</span>
                 </el-col>
               </el-row>
             </div>
@@ -116,32 +130,34 @@
         <el-col :span="16" :xs="24" :offset="2">
           <el-card class="box-card1">
               <template>
-                <el-tabs v-model="activeName" @tab-click="" style="line-height: 10px;padding: 1px">
+                <el-tabs v-model="activeName" @tab-click="reset('updateForm','ruleFormPwd')"
+                         style="line-height: 10px;padding: 1px">
                   <el-tab-pane label="基本资料" name="first">
-                    <el-form :label-position="labelPosition" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
-                      <el-form-item label="用户姓名" class="label-font" required>
-                        <el-input></el-input>
+                    <el-form :label-position="labelPosition" :model="updateUserInfo" ref="updateForm"
+                             :rules="updateUserRules" label-width="100px" class="demo-ruleForm" >
+                      <el-form-item label="用户姓名" class="label-font" prop="userRname">
+                        <el-input v-model="updateUserInfo.userRname" autocomplete="off" clearable></el-input>
                       </el-form-item>
-                      <el-form-item label="手机号码" class="label-font" required>
-                        <el-input></el-input>
+                      <el-form-item label="联系电话" class="label-font">
+                        <el-input v-model="updateUserInfo.userTel" autocomplete="off" clearable></el-input>
                       </el-form-item>
-                      <el-form-item label="出生日期" class="label-font" required>
-                        <el-date-picker type="date" placeholder="选择日期" style="width: 100%;"></el-date-picker>
+                      <el-form-item label="电子邮箱" class="label-font">
+                        <el-input v-model="updateUserInfo.userEmail" autocomplete="off" clearable></el-input>
                       </el-form-item>
                       <el-form-item label="性别" class="label-font">
-                        <el-radio-group>
-                          <el-radio label="男"></el-radio>
-                          <el-radio label="女"></el-radio>
+                        <el-radio-group v-model="updateUserInfo.userGender">
+                          <el-radio label="男">男</el-radio>
+                          <el-radio label="女">女</el-radio>
                         </el-radio-group>
                       </el-form-item>
                       <el-form-item>
-                        <el-button type="primary" @click="">保存</el-button>
-                        <el-button type="danger" @click="">关闭</el-button>
+                        <el-button type="primary" @click="updateUser('updateForm')">保存</el-button>
+                        <el-button type="danger" @click="closeUserProfile('updateForm')">返回</el-button>
                       </el-form-item>
                     </el-form>
                   </el-tab-pane>
                   <el-tab-pane label="修改密码"  name="second">
-                    <el-form :model="userPasswordInfo" :label-position="labelPosition" status-icon :rules="rules"  ref="ruleFormPwd" label-width="100px" class="demo-ruleForm">
+                    <el-form :model="userPasswordInfo" :label-position="labelPosition" status-icon :rules="updatePwRules"  ref="ruleFormPwd" label-width="100px" class="demo-ruleForm">
                       <el-form-item label="旧密码" class="label-font" required prop="oldPassword">
                         <el-input type="password" v-model="userPasswordInfo.oldPassword" autocomplete="off"></el-input>
                       </el-form-item>
@@ -153,7 +169,7 @@
                       </el-form-item>
                       <el-form-item>
                         <el-button type="primary" @click="updateUserPassword('ruleFormPwd')">保存</el-button>
-                        <el-button type="danger" @click="">关闭</el-button>
+                        <el-button type="danger" @click="closeUserProfile('ruleFormPwd')">返回</el-button>
                       </el-form-item>
                     </el-form>
                   </el-tab-pane>
@@ -200,14 +216,26 @@
           };
 
           return {
-            userInfo:{
-              userInfo:'个人信息',
-              userName:undefined,
-              userTel:undefined,
-              userEmail:undefined,
-              userDept:undefined,
-              userRole:undefined,
-              userCreatedate:undefined
+            tableData:[],
+            satoken:undefined,
+            userInfo:'个人信息',
+            userProfileQuery:{
+              userName: undefined,
+              userRname: undefined,
+              roleName: undefined,
+              userStatus: undefined,
+              currentPage: 1,
+              pageSize: 5
+            },
+            updateUserInfo: {
+              userId: undefined,
+              userName: undefined,
+              userRname: undefined,
+              userGender: undefined,
+              roleName: undefined,
+              userTel: undefined,
+              userEmail: undefined,
+              userStatus: undefined
             },
             url:undefined,
             activeName:'first',
@@ -217,7 +245,12 @@
               newPassword:undefined,
               confirmPassword:undefined
             },
-            rules: {
+            updateUserRules: {
+              userRname: [
+                {required: true, message: '请输入姓名', trigger: 'blur'},
+              ]
+            },
+            updatePwRules: {
               oldPassword: [
                 { validator: checkOldPassword, trigger: 'blur' }
               ],
@@ -231,6 +264,33 @@
           };
         },
       methods:{
+          checkUserInfo() {
+            const _self = this
+            _self.userProfileQuery.userName = sessionStorage.getItem('username')
+            _self.$http.get("/api/user",{
+              params: _self.userProfileQuery
+            }).then(function (resp) {
+              console.log(resp)
+              if (resp.data.code == 200) {
+                _self.tableData = resp.data.data.userInfos
+              }
+              _self.updateUserInfo.userId = _self.tableData[0].userId
+              _self.updateUserInfo.userName = _self.tableData[0].userName
+              _self.updateUserInfo.userRname = _self.tableData[0].userRname
+              _self.updateUserInfo.userGender = _self.tableData[0].userGender
+              _self.updateUserInfo.userTel = _self.tableData[0].userTel
+              _self.updateUserInfo.userEmail = _self.tableData[0].userEmail
+              if(_self.tableData[0].userStatus === 1) _self.updateUserInfo.userStatus = '正常'
+              else _self.updateUserInfo.userStatus = '冻结'
+              _self.updateUserInfo.roleName = _self.tableData[0].roleName
+            })
+            _self.url = sessionStorage.getItem('imgUrl')
+            if(_self.url.substring(0,7)==="http://") {
+              _self.url = _self.url
+            } else {
+              _self.url = "http://localhost:8088"+ _self.url
+            }
+          },
         uploadFile(param){
           const _self = this
           let file = param.file
@@ -243,10 +303,28 @@
               _self.$message.success(resp.data.msg)
               _self.url = "http://localhost:8088"+resp.data.data
               _self.$emit("change_url",_self.url)
+              sessionStorage.removeItem('imgUrl')
+              sessionStorage.setItem('imgUrl',_self.url)
             }else {
               _self.$message.error(resp.data.msg)
             }
           })
+        },
+        updateUser(formName) {
+            const _self = this
+          _self.$refs[formName].validate((valid) => {
+            if (valid) {
+              _self.$http.put("/api/user",_self.updateUserInfo).then(resp=>{
+                if(resp.data.code==200){
+                  _self.$message.success(resp.data.msg)
+                  _self.checkUserInfo()
+                }
+              })
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          });
         },
         updateUserPassword(updatePwdForm){
           const _self = this
@@ -271,21 +349,21 @@
               return false;
             }
           });
+        },
+        closeUserProfile(formName) {
+            const _self = this
+          _self.$refs[formName].resetFields();
+          _self.$router.push('/index/home');
+        },
+        reset(formName1,formName2){
+            const _self = this
+          _self.$refs[formName1].resetFields();
+          _self.$refs[formName2].resetFields();
+          _self.checkUserInfo()
         }
       },
       mounted() {
-        this.userInfo.userName = sessionStorage.getItem("username")
-        this.userInfo.userTel = sessionStorage.getItem("usertel")
-        this.userInfo.userEmail = sessionStorage.getItem("useremail")
-        this.userInfo.userDept = sessionStorage.getItem("userdept")
-        this.userInfo.userRole = sessionStorage.getItem("userrole")
-        this.userInfo.userCreatedate = sessionStorage.getItem("usercreatedate")
-        this.url = sessionStorage.getItem("imgUrl")
-        if(this.url.substring(0,7)==="http://") {
-          this.url = this.url
-        } else {
-          this.url = "http://localhost:8088"+ this.url
-        }
+        this.checkUserInfo();
       }
     }
 </script>

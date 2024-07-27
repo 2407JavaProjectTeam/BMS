@@ -2,7 +2,7 @@
   <div class="login-page">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span class="login-title">后台管理系统</span>
+        <span class="login-title">图书管理系统</span>
       </div>
       <div class="login-form">
         <el-form :model="loginUserInfo" ref="">
@@ -11,13 +11,16 @@
             </el-input>
           </el-form-item>
           <el-form-item prop="">
-            <el-input type="password" v-model="loginUserInfo.userPassword"   auto-complete="off" prefix-icon="el-icon-lock" placeholder="请输入密码" >
+            <el-input type="password" v-model="loginUserInfo.userPassword"   auto-complete="off" prefix-icon="el-icon-lock" placeholder="请输入密码" show-password>
             </el-input>
           </el-form-item>
 
           <el-form-item>
             <el-button style="width:100%;" type="primary" @click="login">登录</el-button>
           </el-form-item>
+          <el-row style="text-align: center;margin-top:-10px">
+            <el-link type="primary" @click="gotoRegister">用户注册</el-link>
+          </el-row>
         </el-form>
       </div>
     </el-card>
@@ -37,6 +40,9 @@
       }
     },
     methods:{
+      gotoRegister() {
+        this.$router.push("/Register");
+      },
       login(){
         const _self = this
         //请求方式，基本的有两种：get、post请求    为了满足restful风格开发，还需要delete和put请求
@@ -53,12 +59,14 @@
             if(resp.data.code==500){
               _self.$message.error(resp.data.msg)
             }else if(resp.data.code==200){//登录成功,跳转到主页
+              console.log(resp)
               //将当前登录账号存入sessionStorage
               sessionStorage.setItem("username",_self.loginUserInfo.userName)
               //将token存入sessionStorage
               sessionStorage.setItem("satoken",resp.data.data.token)
               //将头像存入sessionStorage
               sessionStorage.setItem("imgUrl",resp.data.data.imgUrl)
+              sessionStorage.setItem("userid",resp.data.data.userId)
               _self.$router.replace("/index")
             }
         })
@@ -70,6 +78,9 @@
 <style scoped>
   .login-page{
     background-image: url("../assets/login-background.jpg");
+    background-size: cover;
+    /* 背景图片不重复 */
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     justify-content: center;
